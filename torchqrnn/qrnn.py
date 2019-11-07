@@ -111,6 +111,7 @@ class QRNNLayer(nn.Module):
         return H, C[-1:, :, :]
 
 class BiDirQRNNLayer(nn.Module):
+    # Credits: @danFromTelAviv in issues: https://github.com/salesforce/pytorch-qrnn/issues/16
     def __init__(self, input_size, hidden_size=None, save_prev_x=False, zoneout=0, window=1, output_gate=True,
                  use_cuda=True):
         super(BiDirQRNNLayer, self).__init__()
