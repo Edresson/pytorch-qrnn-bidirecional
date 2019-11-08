@@ -55,11 +55,12 @@ class QRNNLayer(nn.Module):
         try:
             seq_len, batch_size, _ = X.size()
         except:
-            input, batch_sizes, sorted_indices, unsorted_indices = X
+            input = X
+            X, batch_sizes, sorted_indices, unsorted_indices = input
             max_batch_size = batch_sizes[0]
             max_batch_size = int(max_batch_size)
-            print(input.size())
-            seq_len, batch_size = input.size()
+            print(X.size())
+            seq_len, batch_size = X.size()
             
 
             
