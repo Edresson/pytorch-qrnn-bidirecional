@@ -59,7 +59,7 @@ class QRNNLayer(nn.Module):
             max_batch_size = batch_sizes[0]
             max_batch_size = int(max_batch_size)
             print(input.size())
-            seq_len, batch_size,_ = input.size()
+            seq_len, batch_size = input.size()
             
 
             
