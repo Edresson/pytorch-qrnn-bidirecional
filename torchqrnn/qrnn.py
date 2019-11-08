@@ -1,6 +1,7 @@
 import torch
 from torch import nn
 from torch.autograd import Variable
+from  torch.nn.utils.rnn import PackedSequence
 
 if __name__ == '__main__':
     from forget_mult import ForgetMult
@@ -50,7 +51,18 @@ class QRNNLayer(nn.Module):
         self.prevX = None
 
     def forward(self, X, hidden=None):
-        seq_len, batch_size, _ = X.size()
+
+        is_packed = isinstance(X, PackedSequence)
+        if is_packed:
+            input, batch_sizes, sorted_indices, unsorted_indices = X
+            max_batch_size = batch_sizes[0]
+            max_batch_size = int(max_batch_size)
+            seq_len, batch_size,_ = input.size()
+        else:
+            seq_len, batch_size, _ = X.size()
+
+            
+        
 
         source = None
         if self.window == 1:
